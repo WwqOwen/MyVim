@@ -9,7 +9,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'junegunn/vim-easy-align'
 Plug '/home/wangweiqiong/.fzf/bin/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'Shougo/neocomplcache.vim'
+"Plug 'Shougo/neocomplcache.vim'
 Plug 'Shougo/context_filetype.vim'
 Plug 'majutsushi/tagbar'
 Plug 'vim-scripts/grep.vim'
@@ -26,7 +26,7 @@ Plug 'bubujka/emmet-vim'
 Plug 'wesleyche/srcexpl'
 Plug 'anyakichi/vim-surround'
 Plug 'vim-scripts/ZoomWin'
-Plug 'w0rp/ale'
+"Plug 'w0rp/ale'
 Plug 'airblade/vim-gitgutter'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-indent'
@@ -54,7 +54,7 @@ Plug 'honza/vim-snippets'
 "Plug 'kien/ctrlp.vim'
 "Plug 'vimsmoothscroll/vim-smooth-scroll'
 "Plug 'Shougo/echodoc.vim'
-Plug 'Valloric/YouCompleteMe', {'do':'./install.py --clang-completer --go-completer --java'}
+Plug 'Valloric/YouCompleteMe', {'do':'./install.py --clang-completer'}
 "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
 ""Plug 'vim-scripts/gtags.vim'
 "Plug 'justinmk/vim-dirvish'
@@ -234,17 +234,17 @@ noremap <silent> <leader>ga :GscopeFind a <C-R><C-W><cr>
 "    Plug 'skywind3000/gutentags_plus'
 
 	"set cscopetag " 使用 cscope 作为 tags 命令
-	set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
+	 set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
 	
 	"gtags.vim 设置项
 	"let GtagsCscope_Auto_Load = 1
 	"let CtagsCscope_Auto_Map = 1
 	"let GtagsCscope_Quiet = 1
-	let g:gutentags_gtags_executable = '/home/wwq/usr/bin/gtags'
+	let g:gutentags_gtags_executable = '/home/wangwq_86/.local/bin/gtags'
 
     "let $GTAGSLABEL = 'native'
 	let $GTAGSLABEL ='native-pygments'
-    let $GTAGSCONF = '/home/wwq/usr/share/gtags/gtags.conf'
+    let $GTAGSCONF = '/home/wangwq_86/.local/share/gtags/gtags.conf'
 	
 	
 	"let g:gutentags_trace = 1
@@ -258,10 +258,10 @@ noremap <silent> <leader>ga :GscopeFind a <C-R><C-W><cr>
 "    " 同时开启 ctags 和 gtags 支持：
     let g:gutentags_modules = []
     if executable('ctags')
-        let g:gutentags_modules += ['ctags']
+       let g:gutentags_modules += ['ctags']
     endif
     if executable('gtags-cscope') && executable('gtags')
-        let g:gutentags_modules += ['gtags_cscope']
+       let g:gutentags_modules += ['gtags_cscope']
     endif
 
 "    " 将自动生成的 ctags/gtags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
@@ -344,7 +344,7 @@ let g:Lf_WildIgnore = {
 "            \ 'cs,lua,javascript': ['re!\w{2}'],
 "            \ }
 let g:ycm_global_ycm_extra_conf='~/.vim/plugged/YouCompleteMe/.ycm_extra_conf.py'
-
+let g:ycm_global_ycm_extra_conf='~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
 
 " -----------------------------------------------------------------------------
 "asyncrun.vim 插件配置 >
@@ -363,7 +363,8 @@ nnoremap <F10> :call asyncrun#quickfix_toggle(6)<cr>
 "nnoremap <silent> <F5> :AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
 let g:asyncrun_rootmarks = ['.bp', '.svn', '.git', '.root', '_darcs', 'build.xml']
 "nnoremap <silent> <F7> :AsyncRun . J6Set && mm <cr>
-nnoremap <silent> <F7> :AsyncRun -cwd=<root> -raw mm <cr>
+"nnoremap <silent> <F7> :AsyncRun -cwd=<root> -raw mm <cr>
+nnoremap <silent> mm :AsyncRun -cwd=<root> -raw . J6 && mm -j8 <cr>
 " -----------------------------------------------------------------------------
 "ag.vim 插件配置 >
 " -----------------------------------------------------------------------------
@@ -376,10 +377,10 @@ nnoremap <silent> <F7> :AsyncRun -cwd=<root> -raw mm <cr>
 " -----------------------------------------------------------------------------
 "vim-sneak 插件配置 >
 " -----------------------------------------------------------------------------
-map f <Plug>Sneak_f
-map F <Plug>Sneak_F
-map t <Plug>Sneak_t
-map T <Plug>Sneak_T
+"map f <Plug>Sneak_f
+"map F <Plug>Sneak_F
+"map t <Plug>Sneak_t
+"map T <Plug>Sneak_T
 
 "------------------------------------------------------------------
 "UltiSnips
@@ -534,8 +535,8 @@ map J <Plug>(expand_region_shrink)
 "  < neocomplcache 插件配置 >
 " -----------------------------------------------------------------------------
 " 关键字补全、文件路径补全、tag补全等等，各种，非常好用，速度超快。
-let g:neocomplcache_enable_at_startup = 1     "vim 启动时启用插件
-let g:neocomplcache_enable_auto_select = 1
+"let g:neocomplcache_enable_at_startup = 1     "vim 启动时启用插件
+"let g:neocomplcache_enable_auto_select = 1
 "let g:neocomplcache_disable_auto_complete = 1 "不自动弹出补全列表
 " 在弹出补全列表后用 <c-p> 或 <c-n> 进行上下选择效果比较好
 
