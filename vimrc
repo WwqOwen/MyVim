@@ -26,6 +26,7 @@ Plug 'bubujka/emmet-vim'
 Plug 'wesleyche/srcexpl'
 Plug 'anyakichi/vim-surround'
 Plug 'vim-scripts/ZoomWin'
+Plug 'justinmk/vim-sneak'
 "Plug 'w0rp/ale'
 Plug 'airblade/vim-gitgutter'
 Plug 'kana/vim-textobj-user'
@@ -207,20 +208,15 @@ au BufRead,BufNewFile,BufEnter * cd %:p:h
 " :AV    ---切换头文件并垂直分割窗口
 " :AS    ---切换头文件并水平分割窗口
 nnoremap <silent> <F12> :A<CR>
+" -----------------------------------------------------------------------------
+"  < ctags 工具配置 >
+" -----------------------------------------------------------------------------
+" 对浏览代码非常的方便,可以在函数,变量之间跳转等
+set tags=./.tags;,.tags
 
 " -----------------------------------------------------------------------------
 "vim-gutentags 插件配置 >
 " -----------------------------------------------------------------------------
-let g:gutentags_plus_nomap = 1
-noremap <silent> <leader>gs :GscopeFind s <C-R><C-W><cr>
-noremap <silent> <leader>gg :GscopeFind g <C-R><C-W><cr>
-noremap <silent> <leader>gc :GscopeFind c <C-R><C-W><cr>
-noremap <silent> <leader>gt :GscopeFind t <C-R><C-W><cr>
-noremap <silent> <leader>ge :GscopeFind e <C-R><C-W><cr>
-noremap <silent> <leader>gf :GscopeFind f <C-R>=expand("<cfile>")<cr><cr>
-noremap <silent> <leader>gi :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
-noremap <silent> <leader>gd :GscopeFind d <C-R><C-W><cr>
-noremap <silent> <leader>ga :GscopeFind a <C-R><C-W><cr>
 "<leader>cg - 查看光标下符号的定义
 "<leader>cs - 查看光标下符号的引用
 "<leader>cc - 查看有哪些函数调用了该函数
@@ -234,7 +230,7 @@ noremap <silent> <leader>ga :GscopeFind a <C-R><C-W><cr>
 "    Plug 'skywind3000/gutentags_plus'
 
 	"set cscopetag " 使用 cscope 作为 tags 命令
-	 set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
+	set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
 	
 	"gtags.vim 设置项
 	"let GtagsCscope_Auto_Load = 1
@@ -243,7 +239,7 @@ noremap <silent> <leader>ga :GscopeFind a <C-R><C-W><cr>
 	let g:gutentags_gtags_executable = '/home/wangwq_86/.local/bin/gtags'
 
     "let $GTAGSLABEL = 'native'
-	let $GTAGSLABEL ='native-pygments'
+	let $GTAGSLABEL = 'native-pygments'
     let $GTAGSCONF = '/home/wangwq_86/.local/share/gtags/gtags.conf'
 	
 	
@@ -258,10 +254,10 @@ noremap <silent> <leader>ga :GscopeFind a <C-R><C-W><cr>
 "    " 同时开启 ctags 和 gtags 支持：
     let g:gutentags_modules = []
     if executable('ctags')
-       let g:gutentags_modules += ['ctags']
+        let g:gutentags_modules += ['ctags']
     endif
     if executable('gtags-cscope') && executable('gtags')
-       let g:gutentags_modules += ['gtags_cscope']
+        let g:gutentags_modules += ['gtags_cscope']
     endif
 
 "    " 将自动生成的 ctags/gtags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
@@ -288,7 +284,6 @@ noremap <silent> <leader>ga :GscopeFind a <C-R><C-W><cr>
     noremap <Leader>u :PreviewScroll -1<cr> " 往上滚动预览窗口
     noremap <leader>d :PreviewScroll +1<cr> "  往下滚动预览窗口
 "endif
-
 " shell命令调用函数
 function! RunShell(Msg, Shell)
 	echo a:Msg . '...'
@@ -329,23 +324,22 @@ let g:Lf_WildIgnore = {
 "YouCompleteMe.vim 插件配置 >
 " -----------------------------------------------------------------------------
 "let g:ycm_add_preview_to_completeopt = 0
-"let g:ycm_show_diagnostics_ui = 0
-"let g:ycm_server_log_level = 'info'
-"let g:ycm_min_num_identifier_candidate_chars = 2
-"let g:ycm_collect_identifiers_from_comments_and_strings = 1
-"let g:ycm_complete_in_strings=1
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_server_log_level = 'info'
+let g:ycm_min_num_identifier_candidate_chars = 2
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_complete_in_strings=1
 "let g:ycm_key_invoke_completion = '<c-z>'
 "set completeopt=menu,menuone
 
 "noremap <c-z> <NOP>
 
-"let g:ycm_semantic_triggers =  {
-"            \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
-"            \ 'cs,lua,javascript': ['re!\w{2}'],
-"            \ }
+let g:ycm_semantic_triggers =  {
+            \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+            \ 'cs,lua,javascript': ['re!\w{2}'],
+            \ }
 let g:ycm_global_ycm_extra_conf='~/.vim/plugged/YouCompleteMe/.ycm_extra_conf.py'
 let g:ycm_global_ycm_extra_conf='~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
-
 " -----------------------------------------------------------------------------
 "asyncrun.vim 插件配置 >
 " -----------------------------------------------------------------------------
@@ -381,7 +375,7 @@ nnoremap <silent> mm :AsyncRun -cwd=<root> -raw . J6 && mm -j8 <cr>
 "map F <Plug>Sneak_F
 "map t <Plug>Sneak_t
 "map T <Plug>Sneak_T
-
+let g:sneak#label = 1
 "------------------------------------------------------------------
 "UltiSnips
 ""插入模式下直接通过<C-z>键来触发UltiSnips的代码块补全
@@ -752,14 +746,6 @@ if has("cscope")
     nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 endif
 
-" -----------------------------------------------------------------------------
-"  < ctags 工具配置 >
-" -----------------------------------------------------------------------------
-" 对浏览代码非常的方便,可以在函数,变量之间跳转等
-set tags=./.tags;,.tags
-
-"set tags+=~/.vim/systags
-set tags+=~/.vim/tags/cpp_src/tags
 set autochdir
 "接着为系统头文件目录生成tags,终端输入：
 "ctags -I __THROW --file-scope=yes --langmap=c:+.h --languages=c,c++ --links=yes --c-kinds=+p --fields=+S  -R -
