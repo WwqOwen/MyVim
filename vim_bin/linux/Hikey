@@ -1,0 +1,8 @@
+
+cd /home/liaoqiang/work/hikey/hikey970/build/
+#source /home/liaoqiang/work/hikey/hikey970/build/envsetup.sh
+source envsetup.sh
+cd ../
+lunch hikey970-userdebug
+cd /home/liaoqiang/work/hikey/hikey970/vendor/bn/bnui
+
